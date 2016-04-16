@@ -1,0 +1,25 @@
+{
+  "name": "deplode",
+  "version": "1.0.0",
+  "description": "Some enterprise Node.js development practices...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanpoplin/deplode-node.git"
+  },
+  "keywords": [
+    "deployment"
+  ],
+  "author": "Ryan Poplin <byrdannfox@gmail.com> (https://www.linkedin.com/in/ryan-poplin-5847299b)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanpoplin/deplode-node/issues"
+  },
+  "homepage": "https://github.com/ryanpoplin/deplode-node#readme",
+  "dependencies": {
+    "regexmatcher": "^1.0.0"
+  }
+}
