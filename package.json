@@ -4,6 +4,7 @@
   "description": "Some enterprise Node.js development practices...",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +21,10 @@
   },
   "homepage": "https://github.com/ryanpoplin/deplode-node#readme",
   "dependencies": {
+    "good": "^6.6.0",
+    "good-console": "^5.3.1",
     "hapi": "^13.3.0",
+    "inert": "^3.2.0",
     "regexmatcher": "^1.1.0"
   }
 }

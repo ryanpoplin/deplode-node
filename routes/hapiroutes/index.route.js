@@ -1,3 +1,11 @@
 'use strict'
 
-// best way to be modular with Hapi.js
+module.exports = (server) => {
+	server.route({
+		method: 'GET',
+		path: '/',
+		handler: (request, reply) => {
+			reply('Hapi on top of Node.js')
+		}
+	})
+}

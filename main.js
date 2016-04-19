@@ -1,31 +1,12 @@
 'use strict'
 
-const Hapi = require('hapi')
+const Hapi = require('hapi'),
+    Good = require('good')
 
-const server = new Hapi.Server();
-server.connection({
-	port: 3000
-})
+const server = require('./init')(Hapi)
 
-server.route({
-	method: 'GET',
-	path: '/',
-	handler: (request, reply) => {
-		reply('Hapi on top of Node.js')
-	}
-})
+require('./routes/hapiroutes/index.route')(server)
+require('./routes/hapiroutes/param.route')(server)
+require('./routes/hapiroutes/hello.route')(server)
 
-server.route({
-	method: 'GET',
-	path: '/{name}',
-	handler: (request, reply) => {
-		reply(`Hello, ${encodeURIComponent(request.params.name)}.`)
-	}
-})
-
-server.start((err) => {
-	if (err) {
-		throw err
-	}
-	console.log(`Server running at: ${server.info.uri}`)
-})
+require('./boot')(server, Good)
