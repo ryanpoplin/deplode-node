@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/ryanpoplin/deplode-node#readme",
   "dependencies": {
-    "regexmatcher": "^1.0.1"
+    "regexmatcher": "^1.1.0"
   }
 }
