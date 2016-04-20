@@ -21,4 +21,4 @@ fs.access(path, fs.F_OK, (err) => {
     	throw err
     }
     console.log('...')
-});
+})
