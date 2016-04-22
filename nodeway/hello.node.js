@@ -1,6 +1,7 @@
 'use strict';
 const http = require('http'),
-    url = require('url');
+    url = require('url'),
+    qs = require('qs');
 
 let routes = {
 	'GET': {
@@ -19,7 +20,18 @@ let routes = {
 		}
 	},
 	'POST': {
-
+		'/api/login': (req, res) => {
+			let body = '';
+			req.on('data', data => {
+				console.log(data);
+				body += data;
+			});
+			req.on('end', () => {
+				let params = qs.parse(body);
+				console.log(params['title'], params['done']);
+				res.end();
+			});
+		}
 	},
 	'NA': (req, res) => {
 		res.writeHead(404);
