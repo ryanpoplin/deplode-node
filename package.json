@@ -25,6 +25,6 @@
     "good-console": "^5.3.1",
     "hapi": "^13.3.0",
     "inert": "^3.2.0",
-    "regexmatcher": "^1.1.2"
+    "regexmatcher": "^1.1.5"
   }
 }

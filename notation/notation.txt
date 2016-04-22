@@ -1,0 +1,9 @@
+¬p Logical negation. Read "not p." If p is true, then ¬p is false, and vice versa.
+
+p v q Logical disjunction. Read "p or q." The statement p v q is true if either p is true, q is true, or they both are true.
+
+p ^ q Logical conjunction. Read "p and q." The statement p ^ q is true only when both p and q are true.
+
+p ==> q Logical implication. Read "p implies q" or "if p, then q." Note that the statement p ==> q is false only when p is true and q is false. It may not be intuitive that the expression is true when p is false, but one way to think of it is "you can make an argument for anything if you get to start by assuming something that isn't true." 
+
+p <==> q Logical equivalence. Read "p if and only if q" and sometimes written "p if q." The statement p <==> q is true when both p and q are true, or when both p and q are false. Ex: (p ==> q)^(q ==> p)
