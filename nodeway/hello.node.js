@@ -57,5 +57,5 @@ function router (req, res) {
 }
 
 http.createServer(router).listen(3000, () => {
-	console.log('Server listening on port 3000');
+	console.log('Server listening on port 3000, cool');
 });
