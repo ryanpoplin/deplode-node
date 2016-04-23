@@ -23,12 +23,18 @@ let routes = {
 		'/api/login': (req, res) => {
 			let body = '';
 			req.on('data', data => {
-				console.log(data);
+				// this callback is invoked many times as it is streaming data to it over the network...
 				body += data;
+				if (body.length > 2097152) {
+					res.writeHead(413, {'Content-Type': 'text/html'});
+					res.end('<h3>This file being uploaded exceeds the 2MB limit</h3>');
+					req.connection.destroy();
+				}
 			});
 			req.on('end', () => {
 				let params = qs.parse(body);
 				console.log(params['title'], params['done']);
+				// db query to check if a user exists...
 				res.end();
 			});
 		}
