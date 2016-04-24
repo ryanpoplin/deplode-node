@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>test</title>
+    </head>
+    <body>
+        <button>button</button>
+        <script>
+            var expensive = function expensive (n) {
+                // timeStampExpensive = moment().format();
+                let i = 0;
+                while (++i < n * n) { console.log(i); }
+                return i;
+            };
+
+            function onClick (e) {
+                console.log('click', new Date());
+                document.body.style.background = 'red';
+            }
+
+            var button = document.querySelector('button');
+            button.addEventListener('click', onClick);
+            button.dispatchEvent(new Event('click'));
+
+            expensive(300);
+        </script>
+    </body>
+</html>
