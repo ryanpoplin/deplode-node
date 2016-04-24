@@ -3,7 +3,7 @@
 const moment = require('moment');
 
 let timeStampExpensive, timeStampTimer;
-expensive(500);
+expensive(600);
 function expensive (n) {
     timeStampExpensive = moment().format();
     let i = 0;
