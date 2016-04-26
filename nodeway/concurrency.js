@@ -70,11 +70,20 @@
 //
 // function debounce (func, limit) {
 //     let timer;
-//     return function debounced(args) {
+//     return function debounced (args) {
 //         clearTimeout(timer);
 //         timer = setTimeout(() => {
 //             timer = null;
 //             func.apply(this, args);
 //         }, limit);
-//     }
+//     };
+// }
+//
+// function onMouseMove (e) {
+//     console.log(`X: ${e.clientX} Y: ${e.clientY}`);
+//     console.log('events', ++events);
+// }
+//
+// function onInput (e) {
+//     console.log('input', e.target.value);
 // }
