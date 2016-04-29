@@ -73,11 +73,11 @@ const app = require('express')(),
     https = require('https'),
     morgan = require('morgan'),
     fs = require('fs'),
-    PORT = process.env.PORT || 3000,
+    PORT = process.env.PORT || 8080,
     options = {
-        // you'll need to pay for an approved SSL key & crt
-        key  :  fs.readFileSync('server.key'),
-        cert :  fs.readFileSync('server.crt')
+        // consult deploying node.js book for production SSL key, cert, ca setup...
+        key  :  fs.readFileSync('server-key.pem'),
+        cert :  fs.readFileSync('server-cert.pem')
     };
 
 // TODO: cluster research
