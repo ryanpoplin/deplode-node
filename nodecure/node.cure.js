@@ -62,29 +62,66 @@
 
 // note: use NGINX for all SSL requests and Static content...
 
-const app = require('express')(),
-    https = require('https'),
-    fs = require('fs'),
-    options = {
-        key  :  fs.readFileSync('server.key'),
-        cert :  fs.readFileSync('server.crt')
-    };
-
 // https.createServer(options, (req, res) => {
 //     res.writeHead(200);
 //     res.end('secure, hello world\n');
 // }).listen(3000);
 
-app.use((req, res, next) => {
-    let aYear = 60 * 60 * 24 * 365;
-    res.set('Strict-Transport-Security', `max-age=${aYear};includeSubdomains`);
-    next();
-});
+const app = require('express')(),
+    cluster = require('cluster'),
+    /* numCPUs = require('os').cpus().length,*/
+    https = require('https'),
+    morgan = require('morgan'),
+    fs = require('fs'),
+    PORT = process.env.PORT || 3000,
+    options = {
+        // you'll need to pay for an approved SSL key & crt
+        key  :  fs.readFileSync('server.key'),
+        cert :  fs.readFileSync('server.crt')
+    };
 
-app.get('/', (req, res) => {
-    res.send('Secure...');
-});
+// TODO: cluster research
+// if (cluster.isMaster) {
+//
+//     for (let i = 0; i < numCPUs; i++) {
+//         cluster.fork();
+//     }
+//
+//     cluster.on('disconnect', (worker) => {
+//         console.log(`${worker.process.pid} disconnected`);
+//         cluster.fork();
+//     });
+//
+//     cluster.on('exit', (worker, code, signal) => {
+//         console.log(`worker ${worker.process.pid} died`);
+//     });
+//
+// } else {
 
-https.createServer(options, app).listen(3000, () => {
-    console.log('Start...');
-});
+    // TODO: research more about Strict-Transport-Security.
+    app.use((req, res, next) => {
+        let aYear = 60 * 60 * 24 * 365;
+        res.set('Strict-Transport-Security', `max-age=${aYear};includeSubdomains`);
+        next();
+    });
+
+    // TODO: research morgan logger and decide what we want to be logging for development, testing and production builds.
+    // TODO: research how to best timestamp, privatize and organize the storage of log files (they should be securely stored on separate machines).
+    // TODO: make sure you understand where an error could possibly happen at any time in the code and handle it.
+    app.use(morgan('combined'));
+
+    app.get('/', (req, res) => {
+        res.send('Secure...');
+    });
+
+    const server = https.createServer(options, app).listen(PORT, () => {
+        console.log('Start...');
+        // something bad happened =(
+        process.on('uncaughtException', (err) => {
+            console.error(err);
+            server.close();
+            cluster.worker.disconnect();
+        });
+    });
+
+// }

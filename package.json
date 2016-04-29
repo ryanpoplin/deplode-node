@@ -21,11 +21,16 @@
   },
   "homepage": "https://github.com/ryanpoplin/deplode-node#readme",
   "dependencies": {
+    "connect-redis": "^3.0.2",
+    "easy-session": "^1.2.0",
+    "express": "^4.13.4",
     "good": "^6.6.0",
     "good-console": "^5.3.1",
     "hapi": "^13.3.0",
     "inert": "^3.2.0",
     "moment": "^2.13.0",
-    "regexmatcher": "^1.1.5"
+    "morgan": "^1.7.0",
+    "regexmatcher": "^1.1.7",
+    "ssl-root-cas": "^1.1.10"
   }
 }
